@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Compile the .cpp file using a shell script
-                    build 'PES2UG21CS295- 1'
+                    build 'PES2UG21CS295-1'
                     sh 'g++ main.cpp -o output'
                 }
             }
@@ -28,14 +28,7 @@ pipeline {
     }
 
     post {
-        always {
-            script {
-                // Display 'pipeline failed' in case of errors
-                currentBuild.result = currentBuild.result ?: 'SUCCESS'
-                if (currentBuild.result != 'SUCCESS') {
-                    echo 'Pipeline failed'
-                }
-            }
-        }
+        failure{
+            error 'Pipeline failed'
     }
 }
